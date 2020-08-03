@@ -1,0 +1,21 @@
+{
+    "plugins": ["node", "prettier"],
+    "extends": [
+        "eslint:recommended",
+        "plugin:node/recommended",
+        "plugin:prettier/recommended"
+    ],
+    "rules": {
+        "node/exports-style": ["error", "module.exports"],
+        "prettier/prettier": ["error", {
+            "singleQuote": true,
+            "trailingComma": "es5",
+            "useTabs": true
+        }],
+        "no-console": 1,
+        "indent": ["error", "tab"]
+    },
+    "env": {
+        "node": true
+    }
+}
