@@ -2,6 +2,7 @@ const csv = require('csv');
 const fs = require('fs');
 const path = require('path');
 const isSameDay = require('date-fns/isSameDay');
+const errors = require('./../utils/errors');
 const delimiter = {
 	delimiter: ';',
 };
@@ -28,7 +29,7 @@ const getAmenityById = (amenityId) =>
 		readAmentityData(
 			(data) => isIdsEqual(amenityId, data[0]) && results.push(data),
 			() => resolve(results),
-			() => reject(new Error("Can't get Amenity by id"))
+			(e) => reject(new errors.ParseError("Can't get Amenity by id", e))
 		);
 	});
 
@@ -41,7 +42,7 @@ const getReservationsByAmenityIdAndDate = (amenityId, date) =>
 				isSameDay(parseInt(data[5]), parseInt(date)) &&
 				results.push(data),
 			() => resolve(results),
-			() => reject(new Error("Can't get Reservations by date"))
+			(e) => reject(new errors.ParseError("Can't get Reservations by date", e))
 		);
 	});
 
