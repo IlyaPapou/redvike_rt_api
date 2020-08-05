@@ -1,21 +1,8 @@
-const csv = require('csv');
-const fs = require('fs');
-const path = require('path');
 const isSameDay = require('date-fns/isSameDay');
 const errors = require('./../utils/errors');
-const delimiter = {
-	delimiter: ';',
-};
+const dataReader = require('../utils/utils').dataReader;
 
 const isIdsEqual = (id1, id2) => id1 === id2;
-
-const dataReader = (dataPath, onData, onEnd, onError) =>
-	fs
-		.createReadStream(path.join(__dirname, dataPath))
-		.pipe(csv.parse(delimiter))
-		.on('data', onData)
-		.on('end', onEnd)
-		.on('error', onError);
 
 const readAmentityData = (onData, onEnd, onError) =>
 	dataReader('./../../data/Amenity.csv', onData, onEnd, onError);
