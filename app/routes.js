@@ -1,7 +1,7 @@
 const express = require('express');
-const reservationRouter = require('./booking/router');
+const reservationRouter = require('./bookings/router');
 const router = express.Router();
 
-router.use('/booking', reservationRouter);
+router.use('/bookings', reservationRouter);
 
 module.exports = router;

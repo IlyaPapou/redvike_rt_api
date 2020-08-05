@@ -1,6 +1,5 @@
 const isSameDay = require('date-fns/isSameDay');
-const errors = require('./../utils/errors');
-const dataReader = require('../utils/utils').dataReader;
+const { ParseError, dataReader } = require('../utils');
 
 const isIdsEqual = (id1, id2) => id1 === id2;
 
@@ -16,7 +15,7 @@ const getAmenityById = (amenityId) =>
 		readAmentityData(
 			(data) => isIdsEqual(amenityId, data[0]) && results.push(data),
 			() => resolve(results),
-			(e) => reject(new errors.ParseError("Can't get Amenity by id", e))
+			(e) => reject(new ParseError("Can't get Amenity by id", e))
 		);
 	});
 
@@ -29,7 +28,7 @@ const getReservationsByAmenityIdAndDate = (amenityId, date) =>
 				isSameDay(parseInt(data[5]), parseInt(date)) &&
 				results.push(data),
 			() => resolve(results),
-			(e) => reject(new errors.ParseError("Can't get Reservations by date", e))
+			(e) => reject(new ParseError("Can't get Reservations by date", e))
 		);
 	});
 

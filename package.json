@@ -4,8 +4,15 @@
   "description": "REST API for returning reservations",
   "main": "./app/server.js",
   "scripts": {
-    "serve": "nodemon ./app/server.js",
+    "serve": "nodemon ./app/index.js",
+    "test": "jest --watchAll --verbose --runInBand",
     "prettier": "prettier --single-quote --use-tabs --trailing-comma es5 --write \"./app/**/*.js\""
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "coveragePathIgnorePatterns": [
+      "/node_modules/"
+    ]
   },
   "repository": {
     "type": "git",
@@ -29,13 +36,15 @@
     "express": "^4.17.1"
   },
   "devDependencies": {
-    "nodemon": "^2.0.4",
     "eslint": "^7.6.0",
     "eslint-config-prettier": "^6.11.0",
-    "eslint-plugin-prettier": "^3.1.4",
     "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-prettier": "^3.1.4",
     "husky": "^4.2.5",
-    "prettier": "^2.0.5"
+    "jest": "^26.2.2",
+    "nodemon": "^2.0.4",
+    "prettier": "^2.0.5",
+    "supertest": "^4.0.2"
   },
   "engines": {
     "node": ">=12",
