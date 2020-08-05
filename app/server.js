@@ -1,6 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const routes = require('./routes');
+const config = require('./config');
 
 const app = express();
 
@@ -10,4 +11,4 @@ app.use('/api', routes);
 app.use((req, res) => {
 	return res.status(404).json({ error: 'URL not found' });
 });
-app.listen(3000);
+app.listen(config.PORT);
